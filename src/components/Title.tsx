@@ -1,12 +1,18 @@
-import React from 'react';
+type TitleProps = {
+  point: {
+    v: number;
+    y: number;
+    x?: number;
+  }
+}
 
-export const Title = () => {
+export const Title = ({ point }: TitleProps) => {
   return (
     <div 
       className='absolute  left-[100px] -translate-x-2/4 -translate-y-2/4 font-mono text-base text-sky-600' 
-      style={{top: '115px'}}
+      style={{top: `${point.y}px`, left:`${point.x}px`}} 
     >
-      75
+      {point.v}
     </div>
   )
 }
