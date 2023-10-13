@@ -50,11 +50,14 @@ export const calc = (ps: PointType[]) => {
       }
     } else if (pNext && pPrev) {
       // console.log(p.v, {p, pNext, pPrev});
+      if (p.dy && pPrev.y - p.dy > h) {
+        p.dy += 14;
+      } else 
       if (p.dy && pPrev.y - p.y > h * 2) {
         p.dy += 14;
       } else if (p.y - pNext.y > h && pNext.dy && p.y - pNext.dy > h) {
         p.dy = p.y - 12;
-      } else if (!p.dy &&pPrev.y - p.y > h) {
+      } else if (!p.dy && pPrev.y - p.y > h) {
         p.dy = p.y + 12;
       } else if (pPrev.dy) {
         p.dy = pPrev.dy + 14;
@@ -69,7 +72,7 @@ export const calc = (ps: PointType[]) => {
     } else if (pNext && !pPrev) {
       // console.log(p.v, {p, pNext, pPrev});
       if (!p.dy) {
-        if (axisYHeight - p.y <= h && p.y - pNext.y > h) {
+        if (axisYHeight - p.y <= h && p.y - pNext.y > h && pNext.dy && p.y - pNext.dy > h) {
           p.dy = p.y - 12;
         } else if (p.y - pNext.y >= h && pNext.dy && p.y - pNext.dy > h) {
           p.dy = p.y - 12;
@@ -81,7 +84,12 @@ export const calc = (ps: PointType[]) => {
           p.dy = p.y + 12;
         } else if (points[i - 2]) {
           const pNext2 = points[i - 2];
-          if (pNext.dy && pNext.y - pNext2.y > h * 2) {
+          if (pNext2.dy && p.y - pNext.y >= h) {
+            const dy = pNext2.dy
+            pNext2.dy -= 14;
+            p.dy = p.y - 12;
+            pNext.dy = dy;
+          } else if (pNext.dy && pNext.y - pNext2.y > h * 2) {
             p.dy = pNext.dy;
             pNext.dy = p.dy - 14;
           } else if (pNext2.dy) {
@@ -96,6 +104,6 @@ export const calc = (ps: PointType[]) => {
     }
   
   }
-  // console.log({points});
+  console.log({points});
   return points;
 }
