@@ -9,14 +9,16 @@ const p2 = randomRoundNumber(0, 200);
 const p3 = randomRoundNumber(0, 200);
 
 // test value
-const testP1 = 182;
-const testP2 = 175;
-const testP3 = 145;
+const testP1 = 48;
+const testP2 = 45;
+const testP3 = 42;
+// const testP4 = 40;
 
 const points = [
   {v: testP1, y: getDy(testP1), x: 100},
   {v: testP2, y: getDy(testP2), x: 100},
-  {v: testP3, y: getDy(testP3), x: 100}
+  {v: testP3, y: getDy(testP3), x: 100},
+  // {v: testP4, y: getDy(testP4), x: 100},
   // {v: p1, y: getDy(p1), x: 100},
   // {v: p2, y: getDy(p2), x: 100},
   // {v: p3, y: getDy(p3), x: 100},
@@ -31,10 +33,12 @@ export const Points = () => {
     const p1 = randomRoundNumber(0, 200);
     const p2 = randomRoundNumber(0, 200);
     const p3 = randomRoundNumber(0, 200);
+    // const p4 = randomRoundNumber(0, 200);
     const points = [
       {v: p1, y: getDy(p1), x: 100},
       {v: p2, y: getDy(p2), x: 100},
       {v: p3, y: getDy(p3), x: 100},
+      // {v: p4, y: getDy(p4), x: 100},
     ];
     points.sort((a, b) => b.v - a.v);
     setData(points);
